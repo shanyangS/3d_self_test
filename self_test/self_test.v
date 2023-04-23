@@ -5,6 +5,7 @@ module self_test
 	input wire f_layer,
 	input wire[31:0] data_in,
 
+	output reg en,
 	output reg[31:0] data_out
 );
 

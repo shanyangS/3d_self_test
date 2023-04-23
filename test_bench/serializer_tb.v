@@ -6,8 +6,8 @@ wire data_out;
 
 initial
 begin            
-    $dumpfile("wave_s.vcd");        //生成的vcd文件名称
-    $dumpvars(0, serializer_tb);    //tb模块名称
+    $dumpfile("wave_s.vcd");
+    $dumpvars(0, serializer_tb); 
 end
 
 serializer dut(
@@ -31,7 +31,7 @@ initial begin
     #10 rst_n = 1;
     #10 en = 1; data_in = 32'b1111_1110_0001_0010_0110_1001_1111_1111;
     #10 en = 0;
-        
+
     #600 $finish;
 end
 
