@@ -3,9 +3,11 @@ module self_test
 	input wire clk,
 	input wire rst_n,
 	input wire f_layer,
+	input wire upper_story
 	input wire[31:0] data_in,
 
 	output reg en,
+	output reg receive,
 	output reg[31:0] data_out,
 	output wire sort_finish
 );
@@ -39,7 +41,10 @@ module self_test
 					end
 				rx_1: 
 					begin
-						if(cnt == 6'd32)
+						if(cnt == 6'd32 && (data_in <= 32'd3))
+							next_state <= tx_0;
+						else if(data[15:0] == 16'hBEAF || p_state == 4'b1111)
+							next_state <= standby;
 					end
 				standby:
 					next_state <= standby;
@@ -76,7 +81,6 @@ task power;
 					if(p_cnt == 0)
 						begin
 							p_next_state <= p_state;
-							p_cnt <= p_cnt + 1'b1;
 						end
 					else	
 						p_next_state <= p_state + 1'b1;
@@ -164,7 +168,6 @@ task power;
 					if(p_cnt == 8)
 						begin
 							p_next_state <= p_state;
-
 							p_cnt <= p_cnt + 1'b1;
 						end
 					else	
@@ -245,8 +248,6 @@ endtask
 		begin
 			if(!rst_n)
 				p_state <= 4'b0001;
-				p_cnt <= 'b0;
-				power_value_next <= 'b0;
 			else
 				p_state <= p_next_state;
 		end
