@@ -15,7 +15,7 @@ module top
 
 sync_async_reset u0
 (
-.clk(clk),
+.clk(clk_out8),
 .rst_n(rst_n),
 .rst_sync_o(rst_sync)
 );
