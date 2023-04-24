@@ -1,6 +1,5 @@
 module deserializer
 (
-    input wire t_clk,
     input wire clk,
     input wire rst_n,
     input wire data_in,
