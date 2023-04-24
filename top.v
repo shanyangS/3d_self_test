@@ -29,7 +29,8 @@ eight_div u1
 
 deserializer u2
 (
-.clk(t_clk),
+.t_clk(t_clk),
+.clk(clk_out8),
 .rst_n(rst_sync),
 .data_in(data_in),
 .data_out(data_de_out)

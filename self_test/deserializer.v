@@ -1,5 +1,6 @@
 module deserializer
 (
+    input wire t_clk,
     input wire clk,
     input wire rst_n,
     input wire data_in,
@@ -14,7 +15,7 @@ wire en;
 
 /* FSM_en */
 always@(*)
-    begin
+    begin //parity_bit:11
         case(state)
             2'b00:
                 begin
@@ -38,7 +39,7 @@ always@(*)
                     if(cnt == 5'd30)
                         begin
                             next_state <= 2'b00;
-                            gg <= 1'b1;
+                            gg <= 1'b1; //ok to send
                         end
                     else
                         next_state <= 2'b10;

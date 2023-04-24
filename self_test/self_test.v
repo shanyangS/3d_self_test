@@ -61,8 +61,10 @@ module self_test
 							begin
 								next_state = standby;
 							end
-						else
+						else if(cnt >= 6'd35)
 							next_state = tx_0;
+						else
+							next_state = rx_1;
 					end
 				standby:
 					next_state = standby;
@@ -80,9 +82,14 @@ module self_test
 					cnt <= 0;
 					p_state <= 4'b0001;
 				end
+			else if(state != rx_1)
+				begin
+					cnt <= 'b0;
+					state <= next_state;
+				end
 			else if(state == rx_1)
 				begin
-					if(cnt == 6'd35)
+					if(cnt == 6'd38) //more 3 clk
 						cnt <= 'b0;
 					else
 						begin
