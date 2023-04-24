@@ -5,10 +5,12 @@ module top
 	input wire f_layer,
 	input wire data_in,
 
-	output reg data_out
+	output wire tx_out,
+	output wire sort_finish,
+	output wire data_out
 );
 	wire clk_out8;
-	wire en;
+	wire tx_out;
 	wire[31:0] data_de_out;
 	wire[31:0] data_self_out;
 	
@@ -33,15 +35,17 @@ self_test u2
 .rst_n(rst_n),
 .f_layer(f_layer),
 .data_in(data_de_out),
-.data_out(data_self_out),
-.en(en)
+
+.tx_out(tx_out),
+.sort_finish(sort_finish),
+.data_out(data_self_out)
 );
 
 serializer u3
 (
 .clk(clk_out8),
 .rst_n(rst_n),
-.en(en),
+.en(tx_out),
 .data_in(data_de_out),
 .data_out(data_out)
 );
