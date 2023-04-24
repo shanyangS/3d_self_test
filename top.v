@@ -29,7 +29,7 @@ eight_div u1
 
 deserializer u2
 (
-.clk(clk_out8),
+.clk(t_clk),
 .rst_n(rst_sync),
 .data_in(data_in),
 .data_out(data_de_out)
@@ -49,7 +49,7 @@ self_test u3
 
 serializer u4
 (
-.clk(clk_out8),
+.clk(t_clk),
 .rst_n(rst_sync),
 .en(tx_out),
 .data_in(data_de_out),

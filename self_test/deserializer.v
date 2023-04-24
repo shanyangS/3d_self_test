@@ -51,7 +51,6 @@ always@(posedge clk or negedge rst_n)
         if(!rst_n)
             begin
                 state <= 2'b00;
-                data_out <= 'b0;
                 cnt <= 'b0;
                 gg <= 'b0;
             end
