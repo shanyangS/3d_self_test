@@ -1,7 +1,8 @@
 module eight_div
     (
-    input     wire rst_n,
     input     wire clk,
+    input     wire rst_n,
+
     output    reg clk_out8
     );
 		
