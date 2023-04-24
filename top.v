@@ -23,7 +23,7 @@ sync_async_reset u0
 eight_div u1
 (
 .clk(t_clk),
-.rst_n(rst_sync),
+.rst_n(rst_n),
 .clk_out8(clk_out8)
 );
 

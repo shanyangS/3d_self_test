@@ -7,8 +7,8 @@ wire [31:0] data_out;
 
 initial
 begin            
-    $dumpfile("wave_d.vcd");        //生成的vcd文件名称
-    $dumpvars(0, deserializer_tb);    //tb模块名称
+    $dumpfile("wave_d.vcd");        
+    $dumpvars(0, deserializer_tb);   
 end
 
 deserializer dut (
