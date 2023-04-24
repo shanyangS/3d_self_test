@@ -96,6 +96,6 @@ module self_test
 				end
 		end
 
-	assign sort_finish = (state == standby);
+	assign sort_finish = (state == standby) || f_layer;
 
 endmodule
