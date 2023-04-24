@@ -7,10 +7,13 @@ the testbench, and the generated waveforms
   * deserializer.v
   * self_test.v
   * serializer.v
+  * sync_async_reset.v
 * test_bench
   * deserializer_tb.v
   * self_test_tb.v
   * serializer_tb.v
+  * top_tb.v
+  * sync_async_reset_tb.v
 * vcd
   * wave_d.vcd //deserializer_vcd
   * wave_s.vcd //serializer_vcd
@@ -29,10 +32,13 @@ that circuit self-ordering based on inductive coupling.
   * deserializer.v
   * self_test.v
   * serializer.v
+  * sync_async_reset.v
 * test_bench
   * deserializer_tb.v
   * self_test_tb.v
   * serializer_tb.v
+  * top_tb.v
+  * sync_async_reset_tb.v
 * vcd
   * wave_d.vcd //deserializer_vcd
   * wave_s.vcd //serializer_vcd
