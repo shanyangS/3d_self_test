@@ -30,7 +30,7 @@ always@(posedge t_clk or negedge rst_n) begin
         counter <= counter + 1'b1;
 end
 
-always@(posedge t_clk or negedge rst_n) begin
+always@(*) begin
     if(!rst_n)
         data_out = 'b0;
     else

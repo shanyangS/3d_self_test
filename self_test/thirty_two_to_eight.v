@@ -18,7 +18,7 @@ localparam[2:0] idle = 3'b000,
 reg[2:0] state, next_state;
 reg[31:0] data_buffer;
 
-always @(*) begin
+always@(posedge div_8_clk) begin
     if(tx_out)
         data_buffer <= data_in;
     else
@@ -57,7 +57,7 @@ always @(posedge div_8_clk or negedge rst_n) begin
 end
 
 always@(*) begin
-    case(next_state)
+    case(state)
         S_0: begin
             data_out <= data_buffer[7:0];
         end
