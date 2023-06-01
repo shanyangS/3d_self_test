@@ -12,7 +12,7 @@ module self_test
 
 	parameter idle=0, rx_0=1, tx_0=2, rx_1=3, standby=4;
 	reg[2:0] state, next_state;
-	reg[3:0] cnt;
+	reg[4:0] cnt;
 	
 	reg[3:0] p_state, power_value;
 	reg[3:0] chip_id; 
@@ -50,9 +50,9 @@ always@(*) begin
 			next_state = rx_1;
 		end
 		rx_1: begin
-			if((cnt <= 4'd14 && data_in[15:0] == 16'hBEAF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 4'd14 && p_state == 4'b1111))
+			if((cnt <= 5'd20 && data_in[15:0] == 16'hBEAF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 5'd20 && p_state == 4'b1111))
 				next_state = standby;
-			else if(cnt >= 4'd14)
+			else if(cnt >= 5'd20)
 				next_state = tx_0;
 			else
 				next_state = rx_1;
@@ -77,7 +77,7 @@ always@(posedge clk or negedge rst_n) begin
 		cnt <= 'b0;
 		state <= next_state;
 	end else if(state == rx_1) begin
-		if(cnt == 4'd15)
+		if(cnt == 5'd21)
 			cnt <= 'b0;
 		else begin
 			cnt <= cnt + 1'b1;
