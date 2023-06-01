@@ -57,8 +57,10 @@ always@(*) begin
 			else
 				next_state = rx_1;
 		end
-		standby:
+		standby: begin
+			data_out = 'b0;
 			next_state = standby;
+		end
 		default: next_state = state;
 	endcase
 end
