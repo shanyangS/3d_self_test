@@ -27,16 +27,14 @@ forever #5 t_clk = ~t_clk;
 end
 
 initial begin
-
+/*
     rst_n = 0;
     #10 rst_n = 1;
 
     f_layer = 1;
 
-    #8000;
-    rst_n = 0;
-    #10 rst_n = 1; f_layer = 0;
-    #10 rst_n = 0;
+    #8000;*/
+    rst_n = 0; f_layer = 0;
     #10 rst_n = 1;
 
     data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0;
