@@ -4,10 +4,9 @@ module top_tb;
     reg t_clk, rst_n, f_layer, data_in;
     wire sort_finish, data_out;
 
-initial
-begin            
-    $dumpfile("wave_top.vcd");        //生成的vcd文件名称
-    $dumpvars(0, top_tb);    //tb模块名称
+initial begin            
+    $dumpfile("wave_top.vcd");
+    $dumpvars(0, top_tb);
 end
 
 top dut
@@ -22,8 +21,8 @@ top dut
 );
 
 initial begin
-t_clk = 0;
-forever #5 t_clk = ~t_clk;
+    t_clk = 0;
+    forever #5 t_clk = ~t_clk;
 end
 
 initial begin

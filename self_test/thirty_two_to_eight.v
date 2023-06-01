@@ -59,16 +59,17 @@ end
 always@(*) begin
     case(state)
         S_0: begin
-            data_out <= data_buffer[7:0];
+            data_out <= data_buffer[31:24];
+            
         end
         S_1: begin
-            data_out <= data_buffer[15:8];
-        end
-        S_2: begin
             data_out <= data_buffer[23:16];
         end
+        S_2: begin
+            data_out <= data_buffer[15:8];
+        end
         S_3: begin
-            data_out <= data_buffer[31:24];
+            data_out <= data_buffer[7:0];
         end
         default: data_out <= 'b0;
     endcase
