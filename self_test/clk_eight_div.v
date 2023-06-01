@@ -1,6 +1,6 @@
 module clk_eight_div
 (
-input wire clk,
+input wire t_clk,
 input wire rst_n,
 
 output reg clk_out8
@@ -9,7 +9,7 @@ output reg clk_out8
 reg clk_out2;
 reg clk_out4;
 
-always@(posedge clk or negedge rst_n)
+always@(posedge t_clk or negedge rst_n)
     begin
         if(!rst_n)
             clk_out2 <= 0;
