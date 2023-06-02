@@ -10,17 +10,13 @@ output reg data_out
 reg[2:0] counter;
 reg[7:0] shift_reg; 
 
-always@(*) begin
-    if(counter == 3'b000)
-        shift_reg = data_in;
-end
-
 always@(posedge t_clk or negedge rst_n) begin
-    if(!rst_n) begin
+    if(!rst_n)
         shift_reg <= 'b0;
-    end else begin
+    else if(counter == 3'b000)
+        shift_reg <= data_in;
+    else
         shift_reg <= {shift_reg[6:0], 1'b0};
-    end
 end
 
 always@(posedge t_clk or negedge rst_n) begin

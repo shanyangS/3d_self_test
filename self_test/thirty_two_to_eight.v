@@ -18,8 +18,10 @@ localparam[2:0] idle = 3'b000,
 reg[2:0] state, next_state;
 reg[31:0] data_buffer;
 
-always@(posedge div_8_clk) begin
-    if(tx_out)
+always@(posedge div_8_clk or negedge rst_n) begin
+    if(!rst_n)
+        data_buffer <= 'b0;
+    else if(tx_out)
         data_buffer <= data_in;
     else
         data_buffer <= data_buffer;
@@ -50,8 +52,6 @@ end
 always @(posedge div_8_clk or negedge rst_n) begin
     if (!rst_n) begin
         state <= idle;
-        data_out <= 'b0;
-        data_buffer <= 'b0;
     end else
         state <= next_state;
 end
@@ -60,7 +60,6 @@ always@(*) begin
     case(state)
         S_0: begin
             data_out <= data_buffer[31:24];
-            
         end
         S_1: begin
             data_out <= data_buffer[23:16];

@@ -22,8 +22,8 @@ module self_test
 always@(*) begin
 	case(state)
 		idle: begin
-			power_value <= 4'b0001;
-			p_state <= 4'b0001;
+			power_value = 4'b0001;
+			p_state = 4'b0001;
 			if(f_layer)
 				next_state = tx_0;
 			else
