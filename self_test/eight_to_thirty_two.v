@@ -44,7 +44,7 @@ always@(posedge div_8_clk or negedge rst_n)
 always@(posedge div_8_clk or negedge rst_n)
     if(!rst_n)
         data_out <= 'b0;
-    else if(data_reg[31:28] == 4'b1010 && data_reg[15:0] == 16'hBEAF)
+    else if(data_reg[31:28] == 4'b1010 && data_reg[15:0] == 16'hBEEF)
         data_out <= data_reg;
     else
         data_out <= data_out;

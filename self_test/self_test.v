@@ -30,7 +30,7 @@ always@(*) begin
 				next_state = rx_0;
 		end
 		rx_0: begin //receive_stage 
-			if(data_in[15:0] == 16'hBEAF)
+			if(data_in[15:0] == 16'hBEEF)
 				next_state = tx_0;
 			else
 				next_state = rx_0;
@@ -46,7 +46,7 @@ always@(*) begin
 			next_state = rx_1;
 		end
 		rx_1: begin
-			if((cnt <= 5'd20 && data_in[15:0] == 16'hBEAF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 5'd20 && p_state == 4'b1111))
+			if((cnt <= 5'd20 && data_in[15:0] == 16'hBEEF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 5'd20 && p_state == 4'b1111))
 				next_state = standby;
 			else if(cnt >= 5'd20)
 				next_state = tx_0;
@@ -88,7 +88,7 @@ always@(*) begin
 				chip_id = 4'b0000;
 		end
 		rx_0: begin
-			if(data_in[15:0] == 16'hBEAF)
+			if(data_in[15:0] == 16'hBEEF)
 				chip_id = data_in[19:16];
 			else
 				chip_id = chip_id;
@@ -100,7 +100,7 @@ end
 /* data_out */
 always@(*) begin
 	case(state)
-		tx_0: data_out = {4'b1010, p_state, chip_id, (chip_id + 1'b1), 16'hBEAF};
+		tx_0: data_out = {4'b1010, p_state, chip_id, (chip_id + 1'b1), 16'hBEEF};
 		default: data_out = 'b0;
 	endcase
 end
