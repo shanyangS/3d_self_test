@@ -27,13 +27,13 @@ always@(*) begin
     endcase
 end
 
-always@(posedge div_8_clk or rst_n)
+always@(posedge div_8_clk or negedge rst_n)
     if(!rst_n)
         state <= 1'b0;
     else
         state <= next_state;
 
-always@(posedge div_8_clk or rst_n)
+always@(posedge div_8_clk or negedge rst_n)
     if(!rst_n)
         data_reg <= 'b0;
     else if(next_state == 1'b1)
@@ -41,7 +41,7 @@ always@(posedge div_8_clk or rst_n)
     else
         data_reg <= data_reg;
 
-always@(posedge div_8_clk or rst_n)
+always@(posedge div_8_clk or negedge rst_n)
     if(!rst_n)
         data_out <= 'b0;
     else if(data_reg[31:28] == 4'b1010 && data_reg[15:0] == 16'hBEAF)
@@ -49,7 +49,7 @@ always@(posedge div_8_clk or rst_n)
     else
         data_out <= data_out;
 
-always@(posedge div_8_clk or rst_n)
+always@(posedge div_8_clk or negedge rst_n)
     if(!rst_n)
         cnt <= 'b0;
     else if(cnt >= 4)
