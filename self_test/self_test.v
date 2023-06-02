@@ -15,31 +15,27 @@ module self_test
 	reg[4:0] cnt;
 	
 	reg[3:0] p_state, power_value;
-	reg[3:0] chip_id; 
+	reg[3:0] chip_id;
 
 
 /* main_fsm */
 always@(*) begin
 	case(state)
 		idle: begin
-				if(f_layer) begin
-					next_state = tx_0;
-					chip_id = 4'b0000;
-				end
-				else
-					next_state = rx_0;
+			power_value <= 4'b0001;
+			p_state <= 4'b0001;
+			if(f_layer)
+				next_state = tx_0;
+			else
+				next_state = rx_0;
 		end
 		rx_0: begin //receive_stage 
 			if(data_in[15:0] == 16'hBEAF)
-				begin
-					chip_id = data_in[19:16];
-					next_state = tx_0;
-				end
+				next_state = tx_0;
 			else
 				next_state = rx_0;
 		end
 		tx_0: begin//transfer_stage
-			data_out = {4'b1010, p_state, chip_id, (chip_id + 1'b1), 16'hBEAF};
 			power_value = p_state; //reg
 			begin
 				if(p_state < 4'b1111)
@@ -58,7 +54,6 @@ always@(*) begin
 				next_state = rx_1;
 		end
 		standby: begin
-			data_out = 'b0;
 			next_state = standby;
 		end
 		default: next_state = state;
@@ -68,11 +63,7 @@ end
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		state <= idle;
-		data_out <= 'b0;
-		chip_id <= 0;
 		cnt <= 0;
-		power_value <= 4'b0001;
-		p_state <= 4'b0001;
 	end else if(state != rx_1) begin
 		cnt <= 'b0;
 		state <= next_state;
@@ -85,6 +76,33 @@ always@(posedge clk or negedge rst_n) begin
 		end
 	end else
 		state <= next_state;
+end
+
+/* chip_id */
+always@(*) begin
+	case(state)
+		idle: begin
+			if(f_layer)
+				chip_id = 4'b0001;
+			else
+				chip_id = 4'b0000;
+		end
+		rx_0: begin
+			if(data_in[15:0] == 16'hBEAF)
+				chip_id = data_in[19:16];
+			else
+				chip_id = chip_id;
+		end
+		default: chip_id = chip_id;	
+	endcase
+end
+
+/* data_out */
+always@(*) begin
+	case(state)
+		tx_0: data_out = {4'b1010, p_state, chip_id, (chip_id + 1'b1), 16'hBEAF};
+		default: data_out = 'b0;
+	endcase
 end
 
 assign tx_out = (state == tx_0);
