@@ -1,9 +1,8 @@
-module clk_eight_div
-(
+module clk_eight_div (
 input wire t_clk,
 input wire rst_n,
 
-output reg clk_out8
+output reg div_8_clk
 );
     
 reg clk_out2;
@@ -28,9 +27,9 @@ always@(posedge clk_out2 or negedge rst_n)
 always@(posedge clk_out4 or negedge rst_n)
     begin
         if(!rst_n)
-            clk_out8 <= 0;
+            div_8_clk <= 0;
         else
-            clk_out8 <= ~clk_out8;
+            div_8_clk <= ~div_8_clk;
     end
 
 endmodule

@@ -1,6 +1,6 @@
 module self_test
 (
-	input wire clk,
+	input wire div_8_clk,
 	input wire rst_n,
 	input wire f_layer,
 	input wire[31:0] data_in,
@@ -60,7 +60,7 @@ always@(*) begin
 	endcase
 end
 
-always@(posedge clk or negedge rst_n) begin
+always@(posedge div_8_clk or negedge rst_n) begin
 	if(!rst_n) begin
 		state <= idle;
 		cnt <= 0;
