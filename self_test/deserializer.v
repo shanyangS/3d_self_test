@@ -13,17 +13,17 @@ reg[7:0] data_reg;
 reg receive_finish;
 
 /* FSM_en */
-always@(*)
-    begin //parity_bit:11
-        case(state)
-            3'b000: next_state = (data_in)?3'b001:3'b000;
-            3'b001: next_state = (!data_in)?3'b010:3'b001;
-            3'b010: next_state = (data_in)?3'b011:3'b000;
-            3'b011: next_state = (!data_in)?3'b100:3'b001;
-            3'b100: next_state = 3'b101;
-            3'b101: next_state = (receive_finish)?((data_in)?3'b001:3'b000):3'b101;
-        endcase
-    end
+always@(*) begin //parity_bit:11
+    case(state)
+        3'b000: next_state = (data_in)?3'b001:3'b000;
+        3'b001: next_state = (!data_in)?3'b010:3'b001;
+        3'b010: next_state = (data_in)?3'b011:3'b000;
+        3'b011: next_state = (!data_in)?3'b100:3'b001;
+        3'b100: next_state = 3'b101;
+        3'b101: next_state = (cnt == 5'd28)?((data_in)?3'b001:3'b000):3'b101;
+        default: next_state = state;
+    endcase
+end
 
 //state
 always@(posedge t_clk or negedge rst_n) begin
@@ -41,16 +41,6 @@ always@(posedge t_clk or negedge rst_n) begin
         cnt <= 'b0;
     else if(next_state == 3'b101)
         cnt <= cnt + 1'b1;
-end
-
-//receive_finish
-always@(posedge t_clk or negedge rst_n) begin
-    if(!rst_n)
-        receive_finish <= 'b0;
-    else if(cnt == 5'd28)
-        receive_finish <= 1'b1;
-    else
-        receive_finish <= 'b0;
 end
 
 //data_reg

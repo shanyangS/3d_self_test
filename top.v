@@ -43,7 +43,8 @@ sync_async_reset sync_async_reset (
 
 deserializer deserializer (
 .t_clk(t_clk),
-.rst_n(rst_n),
+.rst_n(rst_sync_o),
+
 .data_in(data_in),
 
 .data_out(des_data_out)
