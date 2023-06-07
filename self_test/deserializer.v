@@ -21,7 +21,7 @@ always@(*) begin //parity_bit:11
         3'b011: next_state = (!data_in)?3'b100:3'b001;
         3'b100: next_state = 3'b101;
         3'b101: next_state = (cnt == 5'd28)?((data_in)?3'b001:3'b000):3'b101;
-        default: next_state = state;
+        default: next_state = 3'b000;
     endcase
 end
 

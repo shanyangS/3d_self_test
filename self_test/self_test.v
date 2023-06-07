@@ -47,7 +47,7 @@ always@(*) begin
 		standby: begin
 			next_state = standby;
 		end
-		default: next_state = state;
+		default: next_state = 3'b000;
 	endcase
 end
 
