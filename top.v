@@ -7,11 +7,11 @@ module top (
     input wire data_in,
 
     output wire sort_finish,
-    output wire data_out,
-    output wire div_8_clk    
+    output wire data_out   
 );
 
 /* general */
+wire div_8_clk;
 wire rst_sync_o;
 
 /* deserializer */
@@ -43,8 +43,7 @@ sync_async_reset sync_async_reset (
 
 deserializer deserializer (
 .t_clk(t_clk),
-.rst_n(rst_sync_o),
-
+.rst_n(rst_n),
 .data_in(data_in),
 
 .data_out(des_data_out)

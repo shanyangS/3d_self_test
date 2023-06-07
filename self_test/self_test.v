@@ -14,7 +14,7 @@ module self_test
 	reg[2:0] state, next_state;
 	reg[4:0] cnt;
 	
-	reg[3:0] p_state, power_value;
+	reg[3:0] power_value;
 	reg[3:0] chip_id;
 
 
@@ -22,8 +22,6 @@ module self_test
 always@(*) begin
 	case(state)
 		idle: begin
-			power_value = 4'b0001;
-			p_state = 4'b0001;
 			if(f_layer)
 				next_state = tx_0;
 			else
@@ -35,18 +33,11 @@ always@(*) begin
 			else
 				next_state = rx_0;
 		end
-		tx_0: begin//transfer_stage
-			power_value = p_state; //reg
-			begin
-				if(p_state < 4'b1111)
-					p_state = p_state + 1;
-				else
-					p_state = p_state;
-			end
+		tx_0: begin //transfer_stage
 			next_state = rx_1;
 		end
 		rx_1: begin
-			if((cnt <= 5'd20 && data_in[15:0] == 16'hBEEF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 5'd20 && p_state == 4'b1111))
+			if((cnt <= 5'd20 && data_in[15:0] == 16'hBEEF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 5'd20 && power_value == 4'b1111))
 				next_state = standby;
 			else if(cnt >= 5'd20)
 				next_state = tx_0;
@@ -60,6 +51,7 @@ always@(*) begin
 	endcase
 end
 
+/* state */
 always@(posedge div_8_clk or negedge rst_n) begin
 	if(!rst_n) begin
 		state <= idle;
@@ -78,29 +70,41 @@ always@(posedge div_8_clk or negedge rst_n) begin
 		state <= next_state;
 end
 
+/* power_value */
+always@(posedge div_8_clk or negedge rst_n) begin
+    if(!rst_n)
+		power_value <= 4'b0000;
+    else if(next_state == tx_0 && power_value < 4'b1111)
+        power_value <= power_value + 1;
+	else
+		power_value <= power_value;
+end
+
 /* chip_id */
-always@(*) begin
-	case(state)
+always@(posedge div_8_clk or negedge rst_n) begin
+	if(!rst_n)
+		chip_id <= 4'b0000;
+	else case(state)
 		idle: begin
 			if(f_layer)
-				chip_id = 4'b0001;
+				chip_id <= 4'b0001;
 			else
-				chip_id = 4'b0000;
+				chip_id <= 4'b0000;
 		end
 		rx_0: begin
 			if(data_in[15:0] == 16'hBEEF)
-				chip_id = data_in[19:16];
+				chip_id <= data_in[19:16];
 			else
-				chip_id = chip_id;
+				chip_id <= chip_id;
 		end
-		default: chip_id = chip_id;	
+		default: chip_id <= chip_id;	
 	endcase
 end
 
 /* data_out */
 always@(*) begin
 	case(state)
-		tx_0: data_out = {4'b1010, p_state, chip_id, (chip_id + 1'b1), 16'hBEEF};
+		tx_0: data_out = {4'b1010, power_value, chip_id, (chip_id + 1'b1), 16'hBEEF};
 		default: data_out = 'b0;
 	endcase
 end
