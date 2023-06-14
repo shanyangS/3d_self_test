@@ -19,3 +19,4 @@ reg rst_s1, rst_s2;
 assign rst_sync_o = rst_s2;
 
 endmodule
+
