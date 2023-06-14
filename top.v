@@ -7,6 +7,8 @@ module top (
     input wire data_in,
 
     output wire sort_finish,
+    output wire[3:0] chip_id,
+    output wire[3:0] power_value,
     output wire data_out   
 );
 
@@ -66,7 +68,10 @@ self_test self_test (
 
 .tx_out(tx_out),
 .sort_finish(sort_finish),
-.data_out(st_data_out)
+.data_out(st_data_out),
+
+.chip_id(chip_id),
+.power_value(power_value)
 );
 
 thirty_two_to_eight thirty_two_to_eight (
@@ -89,4 +94,3 @@ serializer serializer (
 );
     
 endmodule
-

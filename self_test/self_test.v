@@ -7,16 +7,15 @@ module self_test
 
 	output wire tx_out,
 	output wire sort_finish,
-	output reg[31:0] data_out
+	output reg[31:0] data_out,
+
+	output reg[3:0] chip_id,
+	output reg[3:0] power_value
 );
 
 	parameter idle=0, rx_0=1, tx_0=2, rx_1=3, standby=4;
 	reg[2:0] state, next_state;
 	reg[4:0] cnt;
-	
-	reg[3:0] power_value;
-	reg[3:0] chip_id;
-
 
 /* main_fsm */
 always@(*) begin
