@@ -73,6 +73,8 @@ end
 always@(posedge div_8_clk or negedge rst_n) begin
     if(!rst_n)
 		power_value <= 4'b0000;
+	else if(state == rx_0 && next_state == tx_0)
+		power_value <= data_in[27:24]; //test
     else if(next_state == tx_0 && power_value < 4'b1111)
         power_value <= power_value + 1;
 	else
