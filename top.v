@@ -8,7 +8,8 @@ module top (
 
     output wire sort_finish,
     output wire[3:0] chip_id,
-    output wire[3:0] power_value,
+    output wire[3:0] power_value_upper,
+    output wire[3:0] power_value_lower,
     output wire data_out   
 );
 
@@ -71,7 +72,8 @@ self_test self_test (
 .data_out(st_data_out),
 
 .chip_id(chip_id),
-.power_value(power_value)
+.power_value_upper(power_value_upper),
+.power_value_lower(power_value_lower)
 );
 
 thirty_two_to_eight thirty_two_to_eight (

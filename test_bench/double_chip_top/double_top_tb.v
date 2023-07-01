@@ -3,6 +3,10 @@
 module double_top_tb;
     reg t_clk, rst_n, f_layer_0, f_layer_1;
     wire sort_finish_0, sort_finish_1, data_out;
+    
+    wire[3:0] chip_id_0, chip_id_1;
+    wire[3:0] power_value_upper_0, power_value_upper_1;
+    wire[3:0] power_value_lower_0, power_value_lower_1;
 
 initial begin            
     $dumpfile("wave_double_top.vcd");
@@ -18,6 +22,16 @@ double_top dut (
 
 .sort_finish_0(sort_finish_0), 
 .sort_finish_1(sort_finish_1),
+
+.chip_id_0(chip_id_0),
+.chip_id_1(chip_id_1),
+
+.power_value_upper_0(power_value_upper_0),
+.power_value_upper_1(power_value_upper_1),
+
+.power_value_lower_0(power_value_lower_0),
+.power_value_lower_1(power_value_lower_1),
+
 .data_out(data_out)  
 );
 
