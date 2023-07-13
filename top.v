@@ -10,7 +10,9 @@ module top (
     output wire[3:0] chip_id,
     output wire[3:0] power_value_upper,
     output wire[3:0] power_value_lower,
-    output wire data_out   
+    output wire data_out,
+
+    output wire data_i_o   
 );
 
 /* general */
@@ -50,7 +52,9 @@ deserializer deserializer (
 
 .data_in(data_in),
 
-.data_out(des_data_out)
+.data_out(des_data_out),
+
+.data_i_o(data_i_o)
 );
 
 eight_to_thirty_two eight_to_thirty_two (

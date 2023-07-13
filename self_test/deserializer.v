@@ -4,6 +4,7 @@ module deserializer (
 
     input wire data_in,
     
+    output reg data_i_o,
     output reg[7:0] data_out
 );
 
@@ -53,6 +54,13 @@ always@(posedge t_clk or negedge rst_n) begin
         data_out <= data_reg;
     else
         data_out <= data_out;
+end
+
+always@(posedge t_clk or negedge rst_n) begin
+    if(!rst_n)
+        data_i_o <= 'b0;
+    else
+        data_i_o <= data_in;
 end
 
 endmodule
