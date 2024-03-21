@@ -1,4 +1,4 @@
-module top (
+module self_test_top (
     input wire t_clk,
     input wire rst_n,
 
@@ -10,8 +10,8 @@ module top (
     output wire[3:0] chip_id,
     output wire[3:0] power_value_upper,
     output wire[3:0] power_value_lower,
+    output wire[3:0] power_value,
     output wire data_out,
-
     output wire data_i_o   
 );
 
@@ -77,7 +77,9 @@ self_test self_test (
 
 .chip_id(chip_id),
 .power_value_upper(power_value_upper),
-.power_value_lower(power_value_lower)
+.power_value_lower(power_value_lower),
+
+.power_value(power_value)
 );
 
 thirty_two_to_eight thirty_two_to_eight (

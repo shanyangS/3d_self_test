@@ -11,12 +11,15 @@ module self_test
 
 	output reg[3:0] chip_id,
 	output reg[3:0] power_value_upper,
-	output reg[3:0] power_value_lower
+	output reg[3:0] power_value_lower,
+	output reg[3:0] power_value
 );
 
-	parameter idle=0, rx_0=1, reply=2, tx_0=3, rx_1=4, standby=5;
+	parameter idle=0, rx_0=1, reply=2, wait_state=3, 
+	tx_0=4, rx_1=5, standby=6;
 	reg[2:0] state, next_state;
 	reg[4:0] cnt;
+	reg[3:0] count_wait_state;
 
 /* main_fsm */
 always@(*) begin
@@ -28,13 +31,19 @@ always@(*) begin
 				next_state = rx_0;
 		end
 		rx_0: begin //receive_stage 
-			if(data_in[15:0] == 16'hBEEF)
+			if((data_in[23:20] < data_in[19:16]) && data_in[15:0] == 16'hBEEF)
 				next_state = reply;
 			else
 				next_state = rx_0;
 		end
 		reply: begin
-			next_state = tx_0;
+			next_state = wait_state;
+		end
+		wait_state: begin
+			if(count_wait_state >= 4'd8)
+				next_state = tx_0;
+			else
+				next_state = wait_state;
 		end
 		tx_0: begin //transfer_stage
 			next_state = rx_1;
@@ -105,7 +114,7 @@ always@(posedge div_8_clk or negedge rst_n) begin
 				chip_id <= 4'b0000;
 		end
 		rx_0: begin
-			if(data_in[15:0] == 16'hBEEF)
+			if((data_in[23:20] < data_in[19:16]) && data_in[15:0] == 16'hBEEF)
 				chip_id <= data_in[19:16];
 			else
 				chip_id <= chip_id;
@@ -117,13 +126,35 @@ end
 /* data_out */
 always@(*) begin
 	case(state)
-		reply: data_out = {4'b1010, power_value_upper, chip_id, (chip_id + 1'b1), 16'hBEEF};
+		reply: data_out = {4'b1010, power_value_upper, chip_id, (chip_id - 1'b1), 16'hBEEF};
 		tx_0: data_out = {4'b1010, power_value_lower, chip_id, (chip_id + 1'b1), 16'hBEEF};
 		default: data_out = 'b0;
 	endcase
 end
 
-assign tx_out = (state == tx_0);
+assign tx_out = (state == tx_0) || (state == reply);
 assign sort_finish = (state == standby) || f_layer;
+
+/* count_wait_state */
+always@(posedge div_8_clk or negedge rst_n) begin
+	if(!rst_n)
+		count_wait_state <= 'b0;
+	else if(state == wait_state)
+		count_wait_state <= count_wait_state + 1'b1;
+	else
+		count_wait_state <= 'b0;
+end
+
+/* power_value */
+always@(posedge div_8_clk or negedge rst_n) begin
+	if(!rst_n)
+		power_value <= 'b0;
+	else if((state == wait_state) || (state == reply))
+		power_value <= power_value_upper;
+	else if((state == tx_0) || (state == rx_1))
+		power_value <= power_value_lower;
+	else
+		power_value <= 'b0;
+end
 
 endmodule
