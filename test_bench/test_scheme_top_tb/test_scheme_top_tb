@@ -1,0 +1,97 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x55ed672ead90 .scope module, "test_scheme_top_tb" "test_scheme_top_tb" 2 3;
+ .timescale -9 -12;
+L_0x7fc6d6675018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x55ed6733bcf0_0 .net *"_ivl_3", 0 0, L_0x7fc6d6675018;  1 drivers
+L_0x7fc6d6675060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x55ed6733bdf0_0 .net *"_ivl_8", 0 0, L_0x7fc6d6675060;  1 drivers
+v0x55ed6733bed0_0 .var "direct_data", 0 0;
+v0x55ed6733bf70_0 .var "direct_data_signal", 0 0;
+v0x55ed6733c010_0 .var "direct_power_signal", 0 0;
+v0x55ed6733c0b0_0 .var "direct_power_value", 3 0;
+v0x55ed6733c150_0 .var "self_test_data", 0 0;
+v0x55ed6733c1f0_0 .var "self_test_power_value", 3 0;
+v0x55ed6733c290_0 .net "test_scheme_data", 0 0, L_0x55ed6733c520;  1 drivers
+v0x55ed6733c360_0 .net "test_scheme_power_value", 3 0, L_0x55ed6733c9a0;  1 drivers
+L_0x55ed6733c700 .concat [ 4 1 0 0], v0x55ed6733c0b0_0, L_0x7fc6d6675018;
+L_0x55ed6733c840 .concat [ 4 1 0 0], v0x55ed6733c1f0_0, L_0x7fc6d6675060;
+L_0x55ed6733c9a0 .part L_0x55ed6733c400, 0, 4;
+S_0x55ed672eaf20 .scope module, "uut" "test_scheme_top" 2 23, 3 1 0, S_0x55ed672ead90;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "direct_data_signal";
+    .port_info 1 /INPUT 1 "direct_power_signal";
+    .port_info 2 /INPUT 5 "direct_power_value";
+    .port_info 3 /INPUT 1 "direct_data";
+    .port_info 4 /INPUT 5 "self_test_power_value";
+    .port_info 5 /INPUT 1 "self_test_data";
+    .port_info 6 /OUTPUT 5 "test_scheme_power_value";
+    .port_info 7 /OUTPUT 1 "test_scheme_data";
+v0x55ed67327750_0 .net "direct_data", 0 0, v0x55ed6733bed0_0;  1 drivers
+v0x55ed6733b5d0_0 .net "direct_data_signal", 0 0, v0x55ed6733bf70_0;  1 drivers
+v0x55ed6733b690_0 .net "direct_power_signal", 0 0, v0x55ed6733c010_0;  1 drivers
+v0x55ed6733b730_0 .net "direct_power_value", 4 0, L_0x55ed6733c700;  1 drivers
+v0x55ed6733b810_0 .net "self_test_data", 0 0, v0x55ed6733c150_0;  1 drivers
+v0x55ed6733b920_0 .net "self_test_power_value", 4 0, L_0x55ed6733c840;  1 drivers
+v0x55ed6733ba00_0 .net "test_scheme_data", 0 0, L_0x55ed6733c520;  alias, 1 drivers
+v0x55ed6733bac0_0 .net "test_scheme_power_value", 4 0, L_0x55ed6733c400;  1 drivers
+L_0x55ed6733c400 .functor MUXZ 5, L_0x55ed6733c840, L_0x55ed6733c700, v0x55ed6733c010_0, C4<>;
+L_0x55ed6733c520 .functor MUXZ 1, v0x55ed6733c150_0, v0x55ed6733bed0_0, v0x55ed6733bf70_0, C4<>;
+    .scope S_0x55ed672ead90;
+T_0 ;
+    %vpi_call 2 18 "$dumpfile", "test_scheme_top_tb.vcd" {0 0 0};
+    %vpi_call 2 19 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55ed672ead90 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x55ed672ead90;
+T_1 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733bf70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733c010_0, 0, 1;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x55ed6733c0b0_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733bed0_0, 0, 1;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x55ed6733c1f0_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733c150_0, 0, 1;
+    %delay 100000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55ed6733c010_0, 0, 1;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x55ed6733c0b0_0, 0, 4;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55ed6733bf70_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x55ed6733bed0_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733c010_0, 0, 1;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0x55ed6733c1f0_0, 0, 4;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733bf70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x55ed6733c150_0, 0, 1;
+    %delay 10000, 0;
+    %delay 600000, 0;
+    %vpi_call 2 54 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "test_scheme_top_tb.v";
+    "../../top/test_scheme_top.v";

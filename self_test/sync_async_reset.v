@@ -1,5 +1,4 @@
-module sync_async_reset
-(
+module sync_async_reset (
 	input wire div_8_clk,
 	input wire rst_n,
 	output wire rst_sync_o

@@ -1,5 +1,4 @@
-module self_test
-(
+module self_test (
 	input wire div_8_clk,
 	input wire rst_n,
 	input wire f_layer,
@@ -10,9 +9,9 @@ module self_test
 	output reg[31:0] data_out,
 
 	output reg[3:0] chip_id,
-	output reg[3:0] power_value_upper,
-	output reg[3:0] power_value_lower,
-	output reg[3:0] power_value
+	output reg[4:0] power_value_upper, // change
+	output reg[4:0] power_value_lower, // change
+	output reg[4:0] power_value // change
 );
 
 	parameter idle=0, rx_0=1, reply=2, wait_state=3, 
@@ -31,7 +30,7 @@ always@(*) begin
 				next_state = rx_0;
 		end
 		rx_0: begin //receive_stage 
-			if((data_in[23:20] < data_in[19:16]) && data_in[15:0] == 16'hBEEF)
+			if((data_in[22:19] < data_in[18:15]) && data_in[14:0] == 15'b1011_1110_1110_111) // this section change from 16'hBEEF to 15'h5F77
 				next_state = reply;
 			else
 				next_state = rx_0;
@@ -49,7 +48,7 @@ always@(*) begin
 			next_state = rx_1;
 		end
 		rx_1: begin
-			if((cnt <= 5'd20 && data_in[15:0] == 16'hBEEF && data_in[23:20] == (chip_id + 1'b1)) || (cnt >= 5'd20 && power_value_lower == 4'b1111))
+			if((cnt <= 5'd20 && data_in[14:0] == 15'b1011_1110_1110_111 && data_in[22:19] == (chip_id + 1'b1)) || (cnt >= 5'd20 && power_value_lower == 5'b11111)) // change
 				next_state = standby;
 			else if(cnt >= 5'd20)
 				next_state = tx_0;
@@ -85,9 +84,9 @@ end
 /* power_value_upper */
 always@(posedge div_8_clk or negedge rst_n) begin
     if(!rst_n)
-		power_value_upper <= 4'b0000;
+		power_value_upper <= 5'b00000; // change
 	else if(state == rx_0 || next_state == reply)
-		power_value_upper <= data_in[27:24]; //test
+		power_value_upper <= data_in[27:23]; //test
 	else
 		power_value_upper <= power_value_upper;
 end
@@ -95,8 +94,8 @@ end
 /* power_value_lower */
 always@(posedge div_8_clk or negedge rst_n) begin
     if(!rst_n)
-		power_value_lower <= 4'b0000;
-    else if(next_state == tx_0 && power_value_lower < 4'b1111)
+		power_value_lower <= 5'b00000;
+    else if(next_state == tx_0 && power_value_lower < 5'b11111)
         power_value_lower <= power_value_lower + 1'b1;
 	else
 		power_value_lower <= power_value_lower;
@@ -114,8 +113,8 @@ always@(posedge div_8_clk or negedge rst_n) begin
 				chip_id <= 4'b0000;
 		end
 		rx_0: begin
-			if((data_in[23:20] < data_in[19:16]) && data_in[15:0] == 16'hBEEF)
-				chip_id <= data_in[19:16];
+			if((data_in[22:19] < data_in[18:15]) && data_in[14:0] == 15'b1011_1110_1110_111) // change
+				chip_id <= data_in[18:15];
 			else
 				chip_id <= chip_id;
 		end
@@ -126,8 +125,8 @@ end
 /* data_out */
 always@(*) begin
 	case(state)
-		reply: data_out = {4'b1010, power_value_upper, chip_id, (chip_id - 1'b1), 16'hBEEF};
-		tx_0: data_out = {4'b1010, power_value_lower, chip_id, (chip_id + 1'b1), 16'hBEEF};
+		reply: data_out = {4'b1010, power_value_upper, chip_id, (chip_id - 1'b1), 15'b1011_1110_1110_111};
+		tx_0: data_out = {4'b1010, power_value_lower, chip_id, (chip_id + 1'b1), 15'b1011_1110_1110_111};
 		default: data_out = 'b0;
 	endcase
 end

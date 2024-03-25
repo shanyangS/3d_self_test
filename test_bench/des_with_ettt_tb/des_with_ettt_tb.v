@@ -38,58 +38,74 @@ data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0;
 ////////////////////////////////////////////////////////////////////
 
 #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //test_pass
-#10 data_in = 0; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //power_set
+#10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1;//power_set
 
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; //ID_above
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; //ID_layer
 
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //B
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //E
+#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //1011
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
 
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //A
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 1; //F
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1;  //111
 
 ////////////////////////////////////////////////////////////////////
 
 #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //test_pass
-#10 data_in = 0; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //power_set
+#10 data_in = 0; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; #10 data_in = 1; //power_set
 
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; //ID_above
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; //ID_layer
 
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //B
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //E
+#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //1011
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
 
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //A
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 1; //F
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1;  //111
 
 ////////////////////////////////////////////////////////////////////
 
 #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //test_pass
-#10 data_in = 0; #10 data_in = 1; #10 data_in = 0; #10 data_in = 0; //power_set
+#10 data_in = 0; #10 data_in = 1; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; //power_set
 
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; //ID_above
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; //ID_layer
 
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //B
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //E
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //A
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 1; //F
+#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //1011
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1;  //111
 
 ////////////////////////////////////////////////////////////////////
 
 #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //test_pass
-#10 data_in = 0; #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; //power_set
+#10 data_in = 0; #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //power_set
 
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; //ID_above
 #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; //ID_layer
 
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //B
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //E
-#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //A
-#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 1; //F
+#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //1011
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
 
-#200 $finish;
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1;  //111
+
+////////////////////////////////////////////////////////////////////
+
+#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 0; //test_pass
+#10 data_in = 0; #10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //power_set
+
+#10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 0; //ID_above
+#10 data_in = 0; #10 data_in = 0; #10 data_in = 0; #10 data_in = 1; //ID_layer
+
+#10 data_in = 1; #10 data_in = 0; #10 data_in = 1; #10 data_in = 1; //1011
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1; #10 data_in = 0; //1110
+#10 data_in = 1; #10 data_in = 1; #10 data_in = 1;  //111
+
+#1000 $finish;
 end
 
 endmodule

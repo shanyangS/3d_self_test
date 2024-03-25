@@ -1,4 +1,4 @@
-module des_with_ettt(
+module des_with_ettt (
     input wire t_clk,
     input wire rst_n,
     input wire data_in,
@@ -27,10 +27,10 @@ eight_to_thirty_two ettt(
 );
 
 clk_eight_div clk_eight_div(
-.clk(t_clk),
+.t_clk(t_clk),
 .rst_n(rst_n),
 
-.clk_out8(div_8_clk)
+.div_8_clk(div_8_clk)
 );
 
 sync_async_reset reset(
