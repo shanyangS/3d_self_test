@@ -19,6 +19,7 @@ module top (
     input wire direct_data_signal,
     input wire direct_power_signal,
     input wire random_manual_signal,
+    input wire data_reverse_signal,
 
     input wire prsg_data,
     input wire manual_data,
@@ -53,6 +54,7 @@ module top (
         .direct_data_signal(direct_data_signal),
         .direct_power_signal(direct_power_signal),
         .random_manual_signal(random_manual_signal),
+        .data_reverse_signal(data_reverse_signal),
 
         .prsg_data(prsg_data),
         .manual_data(manual_data),

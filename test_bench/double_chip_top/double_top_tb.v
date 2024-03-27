@@ -16,6 +16,7 @@ module double_top_tb;
     reg direct_data_signal_0, direct_data_signal_1;
     reg direct_power_signal_0, direct_power_signal_1;
     reg random_manual_signal_0, random_manual_signal_1;
+    reg data_reverse_signal_0, data_reverse_signal_1;
 
     reg prsg_data_0, prsg_data_1;
     reg manual_data_0, manual_data_1;
@@ -65,6 +66,8 @@ module double_top_tb;
     .direct_power_signal_1(direct_power_signal_1),
     .random_manual_signal_0(random_manual_signal_0),
     .random_manual_signal_1(random_manual_signal_1),
+    .data_reverse_signal_0(data_reverse_signal_0),
+    .data_reverse_signal_1(data_reverse_signal_1),
 
     .prsg_data_0(prsg_data_0),
     .prsg_data_1(prsg_data_1),
@@ -96,6 +99,7 @@ module double_top_tb;
         direct_power_signal_0 = 0; direct_power_signal_1 = 0;
         random_manual_signal_0 = 1; random_manual_signal_1 = 0;
         direct_power_value_0 = 5'b11111; direct_power_value_1 = 5'b11111;
+        data_reverse_signal_0 = 0; data_reverse_signal_1 = 0;
 
         #10 rst_n = 1; 
         f_layer_0 = 1;
@@ -119,7 +123,26 @@ module double_top_tb;
         direct_data_signal_0 = 1; direct_data_signal_1 = 1;
         direct_power_signal_0 = 1; direct_power_signal_1 = 1;
         random_manual_signal_0 = 0; random_manual_signal_1 = 1;
+        data_reverse_signal_0 = 1; data_reverse_signal_1 = 1;
         
+        direct_power_value_0 = 5'b11111;
+        direct_power_value_1 = 5'b11111;
+
+        #10 manual_data_0 = 1; manual_data_1 = 0; prsg_data_0 = 1; prsg_data_1 = 0; #10 manual_data_0 = 1; manual_data_1 = 1; prsg_data_0 = 1; prsg_data_1 = 1;
+        #10 manual_data_0 = 1; manual_data_1 = 0; prsg_data_0 = 1; prsg_data_1 = 0; #10 manual_data_0 = 0; manual_data_1 = 1; prsg_data_0 = 1; prsg_data_1 = 1;
+        #10 manual_data_0 = 0; manual_data_1 = 1; prsg_data_0 = 0; prsg_data_1 = 1; #10 manual_data_0 = 0; manual_data_1 = 1; prsg_data_0 = 1; prsg_data_1 = 0;
+        #10 manual_data_0 = 1; manual_data_1 = 0; prsg_data_0 = 1; prsg_data_1 = 0; #10 manual_data_0 = 1; manual_data_1 = 1; prsg_data_0 = 1; prsg_data_1 = 1;
+        #10 manual_data_0 = 1; manual_data_1 = 0; prsg_data_0 = 1; prsg_data_1 = 0; #10 manual_data_0 = 0; manual_data_1 = 1; prsg_data_0 = 1; prsg_data_1 = 1;
+        #10 manual_data_0 = 0; manual_data_1 = 1; prsg_data_0 = 0; prsg_data_1 = 1; #10 manual_data_0 = 0; manual_data_1 = 1; prsg_data_0 = 1; prsg_data_1 = 0;
+        
+        #3500 $finish;
+
+    ///////////////// DATA_REVERSE_SIGNAL TEST /////////////////
+        direct_data_signal_0 = 1; direct_data_signal_1 = 1;
+        direct_power_signal_0 = 1; direct_power_signal_1 = 1;
+        random_manual_signal_0 = 0; random_manual_signal_1 = 1;
+        data_reverse_signal_0 = 1; data_reverse_signal_1 = 1;
+
         direct_power_value_0 = 5'b11111;
         direct_power_value_1 = 5'b11111;
 

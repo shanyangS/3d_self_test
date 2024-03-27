@@ -14,14 +14,12 @@ module spi_top
     input wire [8*40-1:0] status_i
 );
 
-
     wire [5:0] reg_addr;
     wire [7:0] reg_wr_data;
     wire [7:0] reg_rd_data;
     wire       reg_wr_en;
     wire       reg_rd_en;
     wire       reg_rd_ready;
-
 
     spi_reg_interface u_spi_reg_interface (
         .clk             (clk),
@@ -40,11 +38,10 @@ module spi_top
 
 
     inst_reg  #(8,24,40)
-    u_inst_reg
-    (
-        .clk         (clk),
-        .rst_n           (rst_n),
-        .reg_addr    (reg_addr),
+    u_inst_reg (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .reg_addr(reg_addr),
         .wr_data (reg_wr_data),
         .rd_data (reg_rd_data),
         .wr_en   (reg_wr_en),

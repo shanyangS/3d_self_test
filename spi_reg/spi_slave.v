@@ -1,15 +1,16 @@
-module spi_slave (input i_Rst_L,          // FPGA Reset, active low
-                  input i_Clk,            // FPGA Clock// PLL ref clock
-                  output o_RX_DV,         // Data Valid pulse (1 clock cycle)
-                  output [7:0] o_RX_Byte, // Byte received on MOSI
-                  input i_TX_DV,          // Data Valid pulse to register i_TX_Byte
-                  input [7:0] i_TX_Byte,  // Byte to serialize to MISO.
-                  input i_SPI_Clk,
-                  output o_SPI_MISO,
-                  input i_SPI_MOSI,
-                  output o_TX_Busy,
-                  input i_SPI_CS_n);      // active low
-    
+module spi_slave (
+    input i_Rst_L,          // FPGA Reset, active low
+    input i_Clk,            // FPGA Clock// PLL ref clock
+    output o_RX_DV,         // Data Valid pulse (1 clock cycle)
+    output [7:0] o_RX_Byte, // Byte received on MOSI
+    input i_TX_DV,          // Data Valid pulse to register i_TX_Byte
+    input [7:0] i_TX_Byte,  // Byte to serialize to MISO.
+    input i_SPI_Clk,
+    output o_SPI_MISO,
+    input i_SPI_MOSI,
+    output o_TX_Busy,
+    input i_SPI_CS_n
+);      // active low
     
     // SPI Interface (All Runs at SPI Clock Domain)
     //   wire w_CPOL;     // Clock polarity
@@ -181,8 +182,5 @@ module spi_slave (input i_Rst_L,          // FPGA Reset, active low
             end
         end
     end
-
-
-
         
- endmodule // SPI_Slave
+endmodule // SPI_Slave

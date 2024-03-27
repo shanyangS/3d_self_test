@@ -1,0 +1,18 @@
+1. 在data上加一个正反选择器；
+2. 跨时钟域的部分，可以加一个异步FIFO; //异步问题
+3. power_value的值给多久;
+
+# 相关信息
+1. control_o
+（1） 一共有64个电感耦合矩阵需要功率配置，每个需要五位，即5*64，还需要三个配置信号，即3*10
+2. status_i
+（1） 读取chip ID(4位)，power_value_upper(5位)，power_value_lower(5位)，sort_finish(1位)
+一共有10个电感耦合矩阵需要读取，即总共15*10
+3. data_io直接输出引脚
+4. PLL看说明书预留多少位
+
+模拟IO PLL看说明书预留多少位 1位
+data_i_o and data_out 20位
+4个 25位模拟IO PAD
+
+SPI 4个数字IO口
