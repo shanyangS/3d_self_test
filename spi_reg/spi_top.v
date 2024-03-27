@@ -37,7 +37,7 @@ module spi_top
     );
 
 
-    inst_reg  #(8,24,40)
+    inst_reg  #(8,49,19)
     u_inst_reg (
         .clk     (clk),
         .rst_n   (rst_n),

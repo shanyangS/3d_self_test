@@ -15,6 +15,8 @@ module double_top (
     output wire data_i_o_0, data_i_o_1,
     output wire data_out_dut0 ,data_out_dut1,
 
+    output wire t_clk_out_0, t_clk_out_1,
+
     /* test_scheme_top */
     input wire direct_data_signal_0, direct_data_signal_1,
     input wire direct_power_signal_0, direct_power_signal_1,
@@ -51,6 +53,8 @@ module double_top (
 
     .data_out(data_out_dut0),
     .data_i_o(data_i_o_0),
+
+    .t_clk_out(t_clk_out_0),
 
     /* test_scheme_top */
     .direct_data_signal(direct_data_signal_0),
@@ -89,6 +93,7 @@ module double_top (
     .data_out(data_out_dut1),
     .data_i_o(data_i_o_1),
 
+    .t_clk_out(t_clk_out_1),
     /* test_scheme_top */
     .direct_data_signal(direct_data_signal_1),
     .direct_power_signal(direct_power_signal_1),

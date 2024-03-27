@@ -1,7 +1,7 @@
 module inst_reg 
 #(parameter REG_WIDTH=8,
-parameter REG_DEEPTH_O=24,
-parameter REG_DEEPTH_I=40) (
+parameter REG_DEEPTH_O=49,
+parameter REG_DEEPTH_I=19) (
     input  wire       clk,
     input  wire       rst_n,
     // from spi

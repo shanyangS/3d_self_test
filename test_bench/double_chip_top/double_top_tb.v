@@ -12,6 +12,7 @@ module double_top_tb;
 
     wire data_i_o_0, data_i_o_1;
     wire data_out_dut0, data_out_dut1;
+    wire t_clk_out_0, t_clk_out_1;
 
     reg direct_data_signal_0, direct_data_signal_1;
     reg direct_power_signal_0, direct_power_signal_1;

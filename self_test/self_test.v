@@ -149,7 +149,7 @@ always@(posedge div_8_clk or negedge rst_n) begin
 	if(!rst_n)
 		power_value <= 'b0;
 	else if((state == wait_state) || (state == reply))
-		power_value <= power_value_upper;
+		power_value <= power_value_upper; // 确保power时间够用
 	else if((state == tx_0) || (state == rx_1))
 		power_value <= power_value_lower;
 	else

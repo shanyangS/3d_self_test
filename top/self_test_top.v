@@ -12,7 +12,10 @@ module self_test_top (
     output wire[4:0] power_value_lower,
     output wire[4:0] power_value,
     output wire data_out,
-    output wire data_i_o   
+    output wire data_i_o,
+
+    /* t_clk_out to PLL CIN */
+    output wire t_clk_out   
 );
 
     /* general */
@@ -31,6 +34,8 @@ module self_test_top (
 
     /* thirty_two_to_eight */
     wire[7:0] ttte_data_out;
+
+    assign t_clk_out = t_clk;
 
     clk_eight_div clk_eight_div (
         .t_clk(t_clk),

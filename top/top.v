@@ -15,6 +15,8 @@ module top (
     output wire data_out,
     output wire data_i_o,
 
+    output wire t_clk_out,
+
     /* test_scheme_top */
     input wire direct_data_signal,
     input wire direct_power_signal,
@@ -47,7 +49,9 @@ module top (
         .power_value_lower(power_value_lower),
         .power_value(power_value),
         .data_out(data_out),
-        .data_i_o(data_i_o)   
+        .data_i_o(data_i_o),
+
+        .t_clk_out(t_clk_out)
     );
 
     test_scheme_top test_scheme_top(
