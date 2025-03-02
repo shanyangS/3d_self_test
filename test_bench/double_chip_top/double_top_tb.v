@@ -101,6 +101,7 @@ module double_top_tb;
         random_manual_signal_0 = 1; random_manual_signal_1 = 0;
         direct_power_value_0 = 5'b11111; direct_power_value_1 = 5'b11111;
         data_reverse_signal_0 = 0; data_reverse_signal_1 = 0;
+        prsg_data_0 = 0; prsg_data_1 = 0; manual_data_0 = 0; manual_data_1 = 0;
 
         #10 rst_n = 1; 
         f_layer_0 = 1;

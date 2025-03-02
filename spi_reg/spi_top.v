@@ -10,8 +10,8 @@ module spi_top
     output wire SPI_MISO,
 
     // CSR interface
-    output wire [8*24-1:0] control_o,
-    input wire [8*40-1:0] status_i
+    output wire [8*34-1:0] control_o,
+    input wire [8*19-1:0] status_i
 );
 
     wire [5:0] reg_addr;

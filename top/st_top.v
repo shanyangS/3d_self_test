@@ -1,4 +1,4 @@
-module top (
+module st_top (
     /* self_test_top */
     input wire t_clk,
     input wire rst_n,
@@ -35,6 +35,9 @@ module top (
     output wire test_scheme_data
 );
 
+    wire div_8_clk;
+    wire rst_sync_o;
+
     self_test_top self_test_top(
         .t_clk(t_clk),
         .rst_n(rst_n),
@@ -51,10 +54,17 @@ module top (
         .data_out(data_out),
         .data_i_o(data_i_o),
 
+        .div_8_clk(div_8_clk),
+        .rst_sync_o(rst_sync_o),
+
         .t_clk_out(t_clk_out)
     );
 
     test_scheme_top test_scheme_top(
+        .t_clk(t_clk),
+        .div_8_clk(div_8_clk),
+        .rst_n(rst_sync_o),
+
         .direct_data_signal(direct_data_signal),
         .direct_power_signal(direct_power_signal),
         .random_manual_signal(random_manual_signal),

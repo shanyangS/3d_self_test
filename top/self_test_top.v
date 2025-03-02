@@ -14,13 +14,13 @@ module self_test_top (
     output wire data_out,
     output wire data_i_o,
 
+    /* div_8_clk and rst_sync_o to test_scheme */
+    output wire div_8_clk,
+    output wire rst_sync_o,
+
     /* t_clk_out to PLL CIN */
     output wire t_clk_out   
 );
-
-    /* general */
-    wire div_8_clk;
-    wire rst_sync_o;
 
     /* deserializer */
     wire[7:0] des_data_out;
